@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Platinum Online Book Betting</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: #020c1b;
+      color: #f0f0f5;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #000000;
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #00FFFF;
+    }
+
+    header img.logo {
+      height: 50px;
+    }
+
+    .social-icons a {
+      margin-left: 15px;
+      color: #00FFFF;
+      font-size: 28px;
+      transition: transform 0.2s;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.2);
+    }
+
+    .hero {
+      position: relative;
+      height: 80vh;
+      background-image: url('./images/hero.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 2;
+      font-size: 3.5em;
+      max-width: 90%;
+      line-height: 1.3;
+      background: linear-gradient(-45deg, #001aff, #00ffe5, #e7e3e3, rgb(255, 0, 0));
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientFlow 6s ease infinite;
+      opacity: 0;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .about {
+      padding: 40px 20px;
+      background-color: #031634;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .about-text {
+      flex: 1 1 300px;
+      max-width: 600px;
+    }
+
+    .about-text h2 {
+      color: #00FFFF;
+      margin-bottom: 10px;
+    }
+
+    .about-text p {
+      color: #ccc;
+      font-size: 1rem;
+    }
+
+    .about-video {
+      width: 60%;
+      max-width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-video video {
+      width: 100%;
+      height: auto;
+      border: 2px solid #00FFFF;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    }
+
+    .services {
+      padding: 60px 5%;
+      background-color: #011122;
+    }
+
+    .services h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #FF00FF, #00FFFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+      margin-bottom: 40px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .card {
+      background: rgba(3, 20, 46, 0.95);
+      border: 2px solid #00FFFF;
+      padding: 25px 20px;
+      border-radius: 12px;
+      text-align: center;
+      transform: scale(1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+    }
+
+    .card:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 25px rgba(255, 0, 255, 0.4), 0 10px 20px rgba(0, 0, 0, 0.3);
+      border-color: #FF00FF;
+    }
+
+    .card h3 {
+      color: #00FFFF;
+      margin: 10px 0;
+    }
+
+    .card p {
+      color: #ccc;
+    }
+
+    .card a {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+    }
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+      filter: drop-shadow(0 0 6px rgba(0, 255, 255, 0.5));
+    }
+
+    .card:hover .card-icon {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.6));
+    }
+
+    .contact-new {
+      background: #00152c;
+      padding: 60px 20px;
+      color: #eee;
+    }
+
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: auto;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .contact-left {
+      flex: 1 1 300px;
+    }
+
+    .contact-left h2 {
+      font-size: 2.2rem;
+      color: #00FFFF;
+      margin-bottom: 10px;
+    }
+
+    .contact-left p {
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+
+    .contact-details {
+      list-style: none;
+      padding: 0;
+    }
+
+    .contact-details li {
+      margin-bottom: 12px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ccc;
+    }
+
+    .contact-details li i {
+      font-size: 22px;
+      color: #FF00FF;
+    }
+
+    .contact-details a {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    .contact-right {
+      flex: 1 1 300px;
+      background: #02172f;
+      padding: 30px;
+      border-radius: 10px;
+      border: 1px solid #444;
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.15);
+    }
+
+    .contact-right form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-right input,
+    .contact-right textarea {
+      padding: 12px;
+      background: #0c1a2e;
+      border: 1px solid #555;
+      border-radius: 6px;
+      color: #eee;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .contact-right input:focus,
+    .contact-right textarea:focus {
+      border-color: #00FFFF;
+      box-shadow: 0 0 8px #00FFFF;
+      outline: none;
+    }
+
+    .contact-right button {
+      background: linear-gradient(135deg, #00FFFF, #FF00FF);
+      color: #000;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .contact-right button:hover {
+      background: linear-gradient(135deg, #FF00FF, #00FFFF);
+    }
+
+    .footer {
+      background: #010a1a;
+      color: #bbb;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #00FFFF;
+      margin: 0 10px;
+      font-size: 20px;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #00FFFF;
+      color: #000;
+      padding: 12px;
+      border-radius: 50%;
+      font-size: 28px;
+      box-shadow: 0 0 12px #00FFFF;
+      z-index: 1000;
+      transition: transform 0.2s;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 992px) {
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 576px) {
+      .service-grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      .hero {
+        height: 60vh;
+        background-image: url('./images/updatedhero.png.jpe');
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+        line-height: 1.4;
+        white-space: normal;
+      }
+
+      .about {
+        flex-direction: column;
+      }
+
+      .about-video {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="./images/logo.jpeg" alt="Platinum Online Book Logo" class="logo" style="height: 70px;" />
+    <div class="social-icons">
+      <!-- Call button instead of Instagram -->
+      <a href="https://t.me/platinumbookofficials" target="_blank" title="Join Telegram">
+        <i class="fab fa-telegram-plane"></i>
+      </a>
+      <a href="tel:+917429383940" title="Call Now">
+        Call Now
+        <i class="fas fa-phone-alt"></i>
+      </a>
+      <a href="https://wa.me/919380802880" target="_blank" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1 id="hero-text">Welcome to PLATINUM ONLINE IDS 🔥 <br>
+      "Play Bold. Win Bigger. 
+        💰 India's Fastest Growing Betting Platform ⚡"**<
+      </h1>
+      
+  </section>
+  
+  <section style="padding: 40px 0; background-color: #010a1a; display: flex; justify-content: center;">
+    
+   
+    <div style="width: 90%; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+      <div style="display: flex; text-align: center; align-items: center;">
+        <a href="https://t.me/yourchannel" target="_blank" style="position: relative; z-index: 2; margin-top: 20px; display: inline-block; background: linear-gradient(135deg, #0088cc, #00FFFF); padding: 12px 24px; border-radius: 8px; font-weight: bold; color: #000; font-size: 1.2rem; text-decoration: none; box-shadow: 0 0 12px rgba(0, 255, 255, 0.4); transition: transform 0.3s ease;">
+          <i class="fab fa-telegram-plane"></i> Join Telegram
+        </a>
+  
+      </div>
+  
+      <!-- Image Card 1 -->
+      <div style="flex: 1 1 300px; max-width: 500px; background: #02172f; border: 1px solid #00FFFF; border-radius: 20px; overflow: hidden; box-shadow: 0 0 20px rgba(0,255,255,0.2); transition: transform 0.3s ease;">
+        <img src="./images/hero2.jpeg" alt="Game 1" style="width: 100%; height: auto; display: block;">
+      </div>
+  
+      <!-- Image Card 2 -->
+      <div style="flex: 1 1 300px; max-width: 500px; background: #02172f; border: 1px solid #FF00FF; border-radius: 20px; overflow: hidden; box-shadow: 0 0 20px rgba(255,0,255,0.2); transition: transform 0.3s ease;">
+        <img src="./images/hero3.jpeg" alt="Game 2" style="width: 100%; height: auto; display: block;">
+      </div>
+  
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="about-text">
+      <h2>About Platinum Online Book</h2>
+      <p>
+        India’s Most Trusted & Sexy Gaming Destination 💋
+        Make Your ID & Win Like Never Before 💸
+        Cricket 🏏 | Football ⚽ | Tennis 🎾 | Casino ♠️♦️
+        💯 Secure | 24/7 Instant Withdrawal | VIP Support 🚀
+        🌐PLATINUM ONLINE IDS
+        </p>
+    </div>
+    <div class="about-video">
+      <video 
+  autoplay 
+  muted 
+  loop 
+  playsinline 
+  controls 
+  style="max-width: 100%; border-radius: 12px;">
+  <source src="./images/video.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+    </div>
+  </section>
+
+  <section class="services">
+    <h2>Our Top Platforms</h2>
+    <div class="service-grid">
+      <div class="card">
+        <a href="https://hotexch15.com/" target="_blank">
+          <img src="./images/hotexch.png" class="card-icon" />
+          <h3>♛ HOTEXCH15 (Self Desposit ,Self Withdral)♛</h3>
+          <p>User 🆔: <b>Demo247</b><br>Pass: <b>123456</b><br>1 pt = ₹1<br>Fancy Min ₹100<br>Ⓜ️atch Min ₹100</p>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="https://Lotus365.black" target="_blank">
+          <img src="./images/lotus365.jpg" class="card-icon" />
+          <h3>♛ LOTUS365 (Self Deposit,Self Withdral) ♛</h3>
+          <p>User 🆔: <b>Demo123</b><br>Pass: <b>123456</b><br>1 pt = ₹1<br>Fancy Min ₹100<br>Ⓜ️atch Min ₹100</p>
+        </a>
+      </div>
+  
+      <div class="card">
+        <a href="https://Reddybook399.com" target="_blank">
+          <img src="./images/reddybook399.png" class="card-icon" />
+          <h3>♛ REEDYBOOK399 ♛</h3>
+          <p>User 🆔: <b>Demo399</b><br>Pass: <b>Asdf@1234</b><br>1 pt = ₹1<br>Fancy Min ₹100<br>Ⓜ️atch Min ₹100</p>
+        </a>
+      </div>
+  
+      <div class="card">
+        <a href="https://dhanbet9.com" target="_blank">
+          <img src="./images/dhanbet.png" class="card-icon" />
+          <h3>♛ DHANBET9 ♛</h3>
+          <p>User 🆔: <b>Demo1000Db</b><br>Pass: <b>123456</b><br>1 pt = ₹1<br>Fancy Min ₹100<br>Ⓜ️atch Min ₹100</p>
+        </a>
+      </div>
+  
+      <!-- <div class="card">
+        <a href="https://www.golden7777.com" target="_blank">
+          <img src="./images/golden7777.png" class="card-icon" />
+          <h3>♛ GOLDEN7777 ♛</h3>
+          <p>User 🆔: <b>Demo1000Gd</b><br>Pass: <b>123456</b><br>1 pt = ₹1<br>Fancy Min ₹100<br>Ⓜ️atch Min ₹100</p>
+        </a>
+      </div> -->
+      
+
+      <div class="card">
+        <a href="https://www.goldenexch99.now" target="_blank">
+          <img src="./images/goldenexch99.png" class="card-icon" />
+          <h3>♛ GOLDENEXCH99 ♛</h3>
+          <p>User 🆔: <b>Demo1000Gh</b><br>Pass: <b>123456</b><br>1 pt = ₹1<br>Fancy Min ₹100<br>Ⓜ️atch Min ₹100</p>
+        </a>
+      </div>
+  
+      <div class="card">
+        <a href="https://lotusbook99.com" target="_blank">
+          <img src="./images/lotusbook99.jpg" class="card-icon" />
+          <h3>♛ LOTUSBOOK99  ♛</h3>
+          <p>User 🆔: <b>Demo1000L99</b><br>Pass: <b>123456</b><br>1 pt = ₹1<br>Fancy Min ₹100<br>Ⓜ️atch Min ₹100</p>
+        </a>
+      </div>
+  
+      <div class="card">
+        <a href="https://betbook247.win" target="_blank">
+          <img src="./images/betbook.png" class="card-icon" />
+          <h3>♛ BETBOOK247 ♛</h3>
+          <p>User 🆔: <b>Demo247</b><br>Pass: <b>123456</b><br>1 pt = ₹1<br>Fancy Min ₹100<br>Ⓜ️atch Min ₹100</p>
+        </a>
+      </div>
+      
+      <div class="card">
+        <a href="https://Goexch777.com" target="_blank">
+          <img src="./images/goexch.png" class="card-icon" />
+          <h3>♛ GOEXCH777 ♛</h3>
+          <p>User 🆔: <b>Demo247</b><br>Pass: <b>123456</b><br>1 pt = ₹1<br>Fancy Min ₹100<br>Ⓜ️atch Min ₹100</p>
+        </a>
+      </div>
+  
+      <!-- You had 8 cards originally, but provided 7 platforms. This one can be reused for a CTA -->
+      <!-- <div class="card">
+        <a href="https://wa.me/919380802880" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/3405/3405874.png" class="card-icon" />
+          <h3>🚀 Start Now</h3>
+          <p>Join now and start your betting journey!<br>Get exclusive demo access today.</p>
+        </a>
+      </div> -->
+    </div>
+  </section>
+
+  <section style="padding: 40px 20px; text-align: center; background-color: #010a1a;">
+    <h2 style="font-size: 2rem; margin-bottom: 20px; background: linear-gradient(90deg, #00FFFF, #FF00FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">💳 All Payment Accepted</h2>
+    
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+  
+      <!-- Bank Transfer -->
+      <div style="display: flex; align-items: center; gap: 10px; background: #02172f; padding: 12px 18px; border-radius: 12px; border: 1px solid #00FFFF; box-shadow: 0 0 12px rgba(0,255,255,0.2);">
+        <span style="font-size: 30px;">🏦</span>
+        
+      </div>
+  
+      <!-- UPI -->
+      <div style="display: flex; align-items: center; gap: 10px; background: #02172f; padding: 12px 18px; border-radius: 12px; border: 1px solid #00FFFF; box-shadow: 0 0 12px rgba(0,255,255,0.2);">
+        <img src="./images/upi-icon.png" alt="UPI" style="height: 30px;">
+        
+      </div>
+  
+      <!-- Crypto -->
+      <div style="display: flex; align-items: center; gap: 10px; background: #02172f; padding: 12px 18px; border-radius: 12px; border: 1px solid #00FFFF; box-shadow: 0 0 12px rgba(255,0,255,0.2);">
+        <img src="./images/bitcoin.png" alt="Crypto" style="height: 30px;">
+        
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; background: #02172f; padding: 12px 18px; border-radius: 12px; border: 1px solid #00FFFF; box-shadow: 0 0 12px rgba(255,0,255,0.2);">
+        <img src="./images/paypal.png" alt="Crypto" style="height: 30px;">
+      
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; background: #02172f; padding: 12px 18px; border-radius: 12px; border: 1px solid #00FFFF; box-shadow: 0 0 12px rgba(255,0,255,0.2);">
+        <img src="./images/phonepe.png" alt="Crypto" style="height: 30px;">
+        
+      </div>
+  
+      <!-- Paytm -->
+      <div style="display: flex; align-items: center; gap: 10px; background: #02172f; padding: 12px 18px; border-radius: 12px; border: 1px solid #00FFFF; box-shadow: 0 0 12px rgba(0,255,255,0.2);">
+        <img src="./images/paytm2.png" alt="Paytm" style="height: 30px;">
+        
+      </div>
+  
+      <!-- PhonePe -->
+      <div style="display: flex; align-items: center; gap: 10px; background: #02172f; padding: 12px 18px; border-radius: 12px; border: 1px solid #00FFFF; box-shadow: 0 0 12px rgba(0,255,255,0.2);">
+        <img src="./images/eth.png" alt="PhonePe" style="height: 30px;">
+        
+      </div>
+  
+    </div>
+  </section>
+  
+  
+
+  <section class="contact-new">
+    <div class="contact-container">
+      <div class="contact-left">
+        <h2>Let's Connect</h2>
+        <p>Have a question or ready to play? Reach out to us directly and we’ll get back to you within minutes!</p>
+        <ul class="contact-details">
+          <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/919380802880">+919380802880</a></li>
+          <li><i class="fab fa-instagram"></i><a href="https://www.instagram.com/platinumonlineids.in">@platinumonlineids.in</a></li>
+          <li><i class="fab fa-telegram-plane"></i><a href="https://t.me/platinumbookofficials">platinumbookofficials</a></li>
+
+          
+          
+        </ul>
+      </div>
+      <div class="contact-right">
+        <form>
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea rows="4" placeholder="Your Message"></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 Platinum Online Book Betting. All rights reserved.</p>
+    <div>
+      <a href="https://www.instagram.com/platinumonlineids.in"><i class="fab fa-instagram"></i></a>
+      
+      <a href="https://wa.me/919380802880"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/platinumbookofficials"><i class="fab fa-telegram-plane"></i></a>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919380802880" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  
+
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      gsap.to("#hero-text", {
+        duration: 1.5,
+        opacity: 1,
+        y: -20,
+        ease: "power2.out",
+      });
+
+      gsap.from(".about-text", {
+        scrollTrigger: ".about-text",
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        delay: 0.2,
+        ease: "power3.out"
+      });
+
+      gsap.from(".about-video", {
+        scrollTrigger: ".about-video",
+        x: 80,
+        opacity: 0,
+        duration: 1.2,
+        delay: 0.4,
+        ease: "power3.out"
+      });
+
+      gsap.from(".card", {
+        scrollTrigger: ".service-grid",
+        y: 40,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 1,
+        ease: "power2.out"
+      });
+    });
+  </script>
+</body>
+</html>
